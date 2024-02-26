@@ -1,0 +1,47 @@
+@ Format of map files:
+@   Lines beginning with a @ are comments (ignored)
+@   A line of the format $ x , y declares a map of x rows and y columns
+@   It must occurr before the actual map specification
+@   In the map specification:
+@     .  denotes an empty cell
+@     #  denotes a block (cannot be removed)
+@     *  denotes a brick (can be removed by an explosion)
+@     P  denotes the (initial) position of a player
+@     Other characters are ignored
+@     Each line maps to a row in the map
+@     White spaces in each line are ignored
+@     Empty lines are also ignored
+
+$ 31 , 11
+
+. . . . . . . . . . .
+. * . * . * . * . * .
+. . . . . . . . . . .
+. * . * . * . * . * .
+. . . . . . . . . . .
+. * . * . * . * . * .
+. . . . . # # # . . .
+. * . * . * . * . * .
+. . . . . . . . . . .
+. * . * . * . * . * .
+. . . . . . . . . . .
+. * . * . * . * . * .
+. * . * . * . * . * .
+. * . * . * . * . * .
+. * . * . * . * . * .
+. * . * . * . * . * .
+. * . * . * . * . * .
+. * . * . * . * . * .
+. * . * . * . * . * .
+. * . * . * . * . * .
+. * . * . * . * . * .
+. * . * . * . * . * .
+. * . * . * . * . * .
+. * . * . * . * . * .
+. * . * . * . * . * .
+. * . * . * . * . * .
+. * . * . * . * . * .
+. * . * . * . * . * .
+. * . * . * . * . * .
+. * . * . * . * . * .
+. * . * . * . * . * v
