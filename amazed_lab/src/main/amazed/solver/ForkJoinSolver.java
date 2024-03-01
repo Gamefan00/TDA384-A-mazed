@@ -134,7 +134,8 @@ public class ForkJoinSolver
                 // one more move made
                 nrMovesMade++;
 
-                // TODO probably need to add a boolean here to make sure we aren't forkinng when only one way to take
+                // A boolean used to make sure we aren't forking when only one way to take
+                boolean firstNb = true;
 
                 // for every node nb adjacent to current
                 for (int nb: maze.neighbors(curr)) {
@@ -142,10 +143,11 @@ public class ForkJoinSolver
                     if (!visited.contains(nb)) {
                         predecessor.put(nb, curr);
 
-                        // TODO check if first nb and then dont fork either??
                         // player should continue if it hasn't yet moved "forkAfter moves"
-                        if (nrMovesMade < forkAfter) {
+                        // or if it is the first neighbour that are checked
+                        if (nrMovesMade < forkAfter || firstNb) {
                             frontier.push(nb);
+                            firstNb = false;
                         } else {
                             // if player has made at least forkafter moves, then a 
                             // new player should be created. 
