@@ -1,0 +1,21 @@
+
+Documentation for lab3 - "short text describing the rationale of our solution"
+
+Our solution has its main logic in the method parallelSearch. For each fork, 
+we create a new player that starts at a starting node, and we create a variable
+holding the number of moves the player has made since forking. As long as not all
+nodes have been processed and noone has found a goal, the while-loop is executed. 
+We pop the next node to process, and if it is already visited we go to the next one
+straight away. Otherwise, we check if the current node has a goal. If it 
+has a goal, we set that the goal is found which signals to the other players. 
+We update the player and its moves and returns the path. 
+
+If no goal, we move the player there, updating moves. We start our for-loop for
+the neighbours. If the node hasn't been visited, we handle it. If we haven't yet
+made forkAfter moves, or if it is the first neighbour, we just push the node
+to the frontier. Otherwise, we check again if it hasn't been visited. In that 
+case, we put moves to 0 and forks to create a new player, and also adds
+it to the list of subsolutions. 
+
+If all nodes explored in subsolution and no goal found, we return a call to
+combineResult where subsolutions are joined. 
