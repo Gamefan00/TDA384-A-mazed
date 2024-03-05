@@ -169,12 +169,27 @@ public class ForkJoinSolver
             }
         }
         // ends up here if all nodes explored and didn't find a goal
-        // TODO need to call some join method here for the subsolutions?!!
-        List<Integer> combinedResult = new ArrayList<>();
-    for (ForkJoinSolver subSolution : subSolutions) {
-        combinedResult.addAll(subSolution.join());
+        // need to call some join method here for the subsolutions
+
+        return combineResult();
     }
 
-    return combinedResult;
+    private List<Integer> combineResult() {
+        // Iterate over each subsolution, ie each forked thread
+        for (ForkJoinSolver subSolution : subSolutions) {
+            List<Integer> res = subSolution.join(); // the path of the subsolution
+            // if the results is null, the child didn't find a goal.
+            // if it is not null, a goal is found
+            if (res != null) {
+                // We want to combine the path found by the current subsolution, with the path
+                // from the parent to the current subsolution's starting node
+                List<Integer> path = pathFromTo(start, predecessor.get(subSolution.start));
+                path.addAll(res);
+                return path;
+            }
+        }
+        // if none of the children found the goal, it returns null
+        return null;
     }
+
 }
