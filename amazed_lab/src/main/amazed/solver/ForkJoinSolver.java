@@ -170,6 +170,11 @@ public class ForkJoinSolver
         }
         // ends up here if all nodes explored and didn't find a goal
         // TODO need to call some join method here for the subsolutions?!!
-        return null;
+        List<Integer> combinedResult = new ArrayList<>();
+    for (ForkJoinSolver subSolution : subSolutions) {
+        combinedResult.addAll(subSolution.join());
+    }
+
+    return combinedResult;
     }
 }
